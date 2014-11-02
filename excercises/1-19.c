@@ -4,18 +4,18 @@
 #include <stdio.h>
 #define MAXLINE 80
 
-
+char rev[MAXLINE];
 int get_line(char s[]);
-int reverse_line(char to[], char from[], int len);
+int reverse_line(char s[], int len);
 
 int main(void)
 {
     int len;
     char line[MAXLINE];
-    char reversed_line[MAXLINE];
+    extern char rev[MAXLINE];
     while((len = get_line(line))>0){
-        reverse_line(line, reversed_line, len);
-        printf("%s", line);
+        reverse_line(line, len);
+        printf("%s", rev);
     }
 }
 
@@ -23,15 +23,20 @@ int get_line(char s[]){
     int i, c;
     for(i=0; i<MAXLINE && ((c=getchar())!= EOF); ++i)
     {
-        s[i] = c;
+        if(c != '\n' || c != '\t')
+            s[i] = c;
     }
+    s[i + 1] = '\0';
     return i;
 }
 
-int reverse_line(char from[], char to[], int len)
+int reverse_line(char line[], int len)
 {
-    int i = 0;
-    while(i > 0 ){
-        for(i)
+    int i;
+    int j = 0;
+    extern char rev[MAXLINE];
+    for(i=len; i >= 0; --i){
+        rev[j] = line[i];
+        ++j;
     }
 }
